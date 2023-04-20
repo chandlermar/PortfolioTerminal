@@ -1,0 +1,185 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https.//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    </head>
+    <style>
+        #screen{
+            top: 0;
+            left: 0;
+            position: fixed;
+            width:100%;
+            height: 100%;
+            background-color: green;
+        }
+        #scan, #bezel{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        #stickynote{
+            position: fixed;
+            width: 30%;
+            height: 40%;
+            top: 5;
+            right: 30;
+            pointer-events: none;
+        }
+
+        #scan{
+            opacity: 60%;
+        }
+
+        body {
+            height: 100%;
+            overflow-y: hidden;
+        }
+
+        #content-header{
+           font-family: VT323;
+           padding-top: 100px; 
+           padding-left: 100px;
+           color: greenyellow;
+           font-size: 60px;
+           text-shadow: 1px 1px 2px rgb(150,167,124), 0 0 1em rgb(150,167,124), 0 0 0.2em rgb(150,167,124)
+        }
+
+        #content-main{
+           font-family: VT323;
+           padding-left: 100px; 
+           color: greenyellow;
+           font-size: 30px;
+           text-shadow: 1px 1px 2px rgb(150,167,124), 0 0 1em rgb(150,167,124), 0 0 0.2em rgb(150,167,124)
+        }
+
+        #user-input{
+           font-family: VT323;
+           padding-left: 10px; 
+           margin-left: 100px;
+           color: greenyellow;
+           font-size: 30px;
+           text-shadow: 1px 1px 2px rgb(150,167,124), 0 0 1em rgb(150,167,124), 0 0 0.2em rgb(150,167,124);
+           background-color: rgb(132, 219, 129);
+           opacity: 100%;
+           outline: none;
+           border: none;
+           width: 500px;
+           caret-color: rgb(77, 117, 17);
+        }
+
+        #output{
+           font-family: VT323;
+           padding-left: 100px; 
+           color: greenyellow;
+           font-size: 30px;
+           text-shadow: 1px 1px 2px rgb(150,167,124), 0 0 1em rgb(150,167,124), 0 0 0.2em rgb(150,167,124);
+        }
+
+    </style>
+    <body>
+        <div id="screen">
+            <img src="scanlines.png" id="scan">
+            <img src="bezel.png" id="bezel">
+            <img src="stickyfinal-removebg-preview.png" id="stickynote">
+            <div id="content-header">
+                Chandlers PC
+            </div>
+            <input type="text" id="user-input">
+            <div id="output"></div>
+        
+        </div>
+
+        <script>
+            const userInput = document.getElementById("user-input");
+            const output = document.getElementById("output");
+            userInput.addEventListener("keydown", function(event) 
+            {
+                if (event.key === "Enter")
+                {
+                    output.innerHTML = "";
+                    
+                    const userText = userInput.value;
+
+                    output.innerHTML += "Command Processed: " + userText + "<br><br>";
+
+                    if (userText == "/help" || userText == "help")
+                    {
+                        output.innerHTML += "Command List" + "<br>"
+                        + "/help" + "<br>"
+                        + "/education" + "<br>"
+                        + "/portfolio" + "<br>"
+                        + "/projects" + "<br>"
+                        + "/experience" + "<br>"
+                        
+                        ;
+                    }
+                    else if (userText == "/portfolio")
+                    {
+                        output.innerHTML += "Please refer to sticky note for more information." + "<br>"
+                        + "Alternatively, use command /help." + "<br>"
+                        
+                        ;
+                    }
+                    else if (userText == "/education")
+                    {
+                        output.innerHTML += "University of Nevada Reno alumni" + "<br>"
+                        + "Major in Computer Science" + "<br>"
+                        + "Minor in Mathematics" + "<br>"
+                        + "3.4 GPA" + "<br>"
+                        
+                        ;
+                    }
+                    else if (userText == "/projects")
+                    {
+                        output.innerHTML += "Bently Adventures:" + "<br>"
+                        + "Inventory Rental System that allows employees to check in/out recreational equipment." + "<br>"
+                        + "Tech Stack: MEVN" + "<br>"
+                        + "Github: https://github.com/chandlermar" + "<br><br>"
+                        + "Micro Mayhem" + "<br>"
+                        + "FPS wave based shooter that challenges players to survive as many rounds as possible." + "<br>"
+                        + "Made with Unity" + "<br>"
+                        + "Github: https://github.com/chandlermar" + "<br>"
+                        
+                        ;
+                    }
+                    else if (userText == "/experience")
+                    {
+                        output.innerHTML += "Skills:" + "<br>"
+                        + "Fluent in HTML/CSS, Javascript, Python, C++, C#, and C." + "<br>"
+                        + "Learning Solidity, Vue, and React." + "<br><br>"
+                        + "Work Experience:" + "<br>"
+                        + "Research Assistant at CoinCloud." + "<br>"
+                        + "Created the Solidity smart contract for CoinCloud's internal payroll." + "<br>"
+                        
+                        ;
+                    }
+                    else if (userText == "/resume")
+                    {
+                        output.innerHTML += "Resume is currently unavailable." + "<br>"
+                        
+                        ;
+                    }
+                    else if (userText == "/special")
+                    {
+                        const skull = "__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___";
+
+                      
+                        output.innerHTML += "Thank you for checking out my site!" + "<br>" + skull;
+                    }
+
+                    else
+                    {
+                        output.innerHTML += "Invalid Command";
+                    }
+                    
+                    userInput.value = "";
+                    
+                }
+            });
+        </script>
+        
+    </body>
+</html>
